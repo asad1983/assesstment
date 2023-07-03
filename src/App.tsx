@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Column from "./Components/Column";
+
 
 const styles = {
   column: {
@@ -9,16 +10,21 @@ const styles = {
     borderColor: 'white'
   },
   row: {
-    backgroundColor: "blue", display: "flex"
+    backgroundColor: "#6d9eeb", display: "flex"
   },
   formRow: {
     display: "flex"
   },
-  formColumn: {
+  inoputContainer: {
     flex: 1,
     margin: 5,
     display: "flex"
   },
+  input: {
+    flex: 1,
+    borderStyle: "solid",
+    borderColor: "red"
+  }
 }
 
 function App() {
@@ -28,7 +34,7 @@ function App() {
   const columnsRef = useRef<HTMLInputElement>(null);
   const linesRef = useRef<HTMLInputElement>(null);
 
-  const createColumnLines = (line: number, column: number) => {
+  const CreateColumnLines = (line: number, column: number) => {
     const rows = []
     for (let i = 0; i < line; i++) {
       rows.push(
@@ -45,13 +51,6 @@ function App() {
   const createColumn = (row: number, column: number) => {
     const columns = [];
     for (let i = 0; i < column; i++) {
-      // columns.push(<div style={styles.column} key={`column-${row}${i}`}>
-
-      //   {`column-${row}${i}`}
-
-      // </div>
-      // )
-
       columns.push(<Column keyValue={`column-${row}${i}`} />)
     }
     return columns;
@@ -59,10 +58,17 @@ function App() {
 
 
   const update = () => {
-    if (!columnsRef.current?.value && !linesRef.current?.value) {
-      alert("Please enter columns and lines")
+    const columnsValue = columnsRef.current?.value;
+    const linesValue = linesRef.current?.value;
+    if (!columnsValue || (columnsValue && parseInt(columnsValue) <= 0)) {
+      alert("Please enter valid columns")
       return false;
     }
+    if (!linesValue || (linesValue && parseInt(linesValue) <= 0)) {
+      alert("Please enter valid lines")
+      return false;
+    }
+
     setLines(linesRef.current ? parseInt(linesRef.current.value) : 1);
     setColumns(columnsRef.current ? parseInt(columnsRef.current.value) : 1);
 
@@ -75,15 +81,15 @@ function App() {
       transform: "translate(-50%, -50%)",
     }}>
 
-      {createColumnLines(lines, columns)}
+      {CreateColumnLines(lines, columns)}
       <div style={styles.formRow} >
-        <div style={styles.formColumn}>
-          <label>Columns:</label>
-          <input style={{ flex: 1 }} ref={columnsRef} placeholder='Columns' />
+        <div style={styles.inoputContainer}>
+          <label style={{ marginRight: "5px" }}>Columns:</label>
+          <input style={styles.input} ref={columnsRef} placeholder='Columns' type='number' />
         </div>
-        <div style={styles.formColumn}>
-          <label>Lines:</label>
-          <input style={{ flex: 1 }} ref={linesRef} placeholder='Lines' />
+        <div style={styles.inoputContainer}>
+          <label style={{ marginRight: "5px" }}>Lines:</label>
+          <input style={styles.input} ref={linesRef} placeholder='Lines' type='number' />
         </div>
 
       </div>

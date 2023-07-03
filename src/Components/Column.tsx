@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 
 interface ColumnProps {
   keyValue: string;
@@ -8,23 +8,19 @@ interface ColumnProps {
 const Column: FC<ColumnProps> = ({ keyValue }) => {
 
 
-  const stylesObj = {
+  const styles = {
     column: {
       flex: 1,
       margin: 5,
       borderStyle: 'solid',
       borderColor: 'white',
-      height: "60px"
+      height: "100px"
     },
     row: {
       backgroundColor: "red", display: "flex"
     }
   }
-  return <div style={stylesObj.column} key={keyValue}>
-
-    {keyValue}
-
-  </div>
+  return <div style={styles.column} key={keyValue}></div>
 }
 
-export default memo(Column);
+export default Column;
