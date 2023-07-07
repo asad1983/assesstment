@@ -1,12 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 interface ColumnProps {
-
 }
 
-
 const Column: FC<ColumnProps> = ({ }) => {
-
 
   const styles = {
     column: {

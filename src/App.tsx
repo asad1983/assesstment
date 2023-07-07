@@ -27,6 +27,15 @@ const styles = {
     borderStyle: "solid",
     borderColor: "red"
   },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center"
+  },
+  button: {
+    width: "100px",
+    height: "40px",
+    margin: "10px"
+  },
   error: {
     color: "red"
   }
@@ -96,8 +105,8 @@ function App() {
         </div>
 
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button style={{ width: "100px", height: "40px", margin: "10px" }} onClick={() => update()}  >Create</button>
+      <div style={styles.buttonContainer}>
+        <button style={styles.button} onClick={() => update()}  >Create</button>
       </div>
 
     </div>
