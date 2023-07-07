@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
 interface ColumnProps {
-  keyValue: string;
+
 }
 
 
-const Column: FC<ColumnProps> = ({ keyValue }) => {
+const Column: FC<ColumnProps> = ({ }) => {
 
 
   const styles = {
@@ -20,7 +20,7 @@ const Column: FC<ColumnProps> = ({ keyValue }) => {
       backgroundColor: "red", display: "flex"
     }
   }
-  return <div style={styles.column} key={keyValue}></div>
+  return <div style={styles.column} data-testid="column"></div>
 }
 
 export default Column;
